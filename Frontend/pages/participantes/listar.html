@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Participantes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>👥 Lista de Participantes</h1>
+    <a href="/participantes/crear">➕ Nuevo Participante</a>
+    <a href="/">🏠 Inicio</a>
+    
+    <table>
+        <tr>
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+        </tr>
+        {% for p in participantes %}
+        <tr>
+            <td>{{ p.ci }}</td>
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.apellido }}</td>
+            <td>{{ p.email }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
