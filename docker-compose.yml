@@ -1,26 +1,24 @@
-# Elimina la línea 'version:' - ya no es necesaria
-
 services:
   web:
-    build: .
+    build: .  # 👈 Esto busca el Dockerfile en la misma carpeta
     ports:
       - "5000:5000"
     environment:
-      - FLASK_ENV=development
-    volumes:
-      - .:/app
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=Agusrodpro1
+      - DB_NAME=SistemaDeBiblioteca
     depends_on:
       - db
+    volumes:
+      - .:/app  # 👈 Para desarrollo: sincroniza cambios en tiempo real
 
   db:
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: Agusrodpro1
-      MYSQL_DATABASE: SistemaDeBiblioteca
-      MYSQL_USER: root
-      MYSQL_PASSWORD: Agusrodpro1
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - db_data:/var/lib/mysql
       - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
