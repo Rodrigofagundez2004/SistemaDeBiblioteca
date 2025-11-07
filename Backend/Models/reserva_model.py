@@ -61,5 +61,30 @@ class ReservaMode:
             conn.rollback()
             return False, f"Error al crear reserva: {e}"
         finally:
+            if cursor: cursor.close()
+            if conn : conn.close()
+    def validar_tipo_sala(self, ci_participante, tipo_sala):
+        #Validar que el usuario puede estar dentro de este tipo de sala
+        db = Database()
+        conn = db.get_connection()
+        cursor = None
+        try:
+            cursor = conn.cursor(dictionary=True)
+            ##Obtener el tipo de usuario (alumno/docente) y programa (grado/posgrado)
+            cursor.execute("""
+                SELECT pp.rol, pa.tipo 
+                FROM participante_programa_academico pp
+                JOIN programa_academico pa ON pp.nombre_programa = pa.nombre_programa
+                WHERE pp.ci_participante = %s
+            """, (ci_participante,))
+            usuario_data = cursor.fetchone()
+            if not usuario_data:
+                return "Usuario no encontrado en algun programa academicos"
+            rol, tipo_programa = usuario_data['rol'], usuario_data['tipo']
+            if tipo_sala == 'docente' and rol != 'docente':
+                return "Esta sala es exclusiva para docentes"
+            if tipo_sala == 'posgrado' and rol == 'alumno' and tipo_programa != 'posgrado':
+                return "Esta sala es exclusiva para programas de posgrado"
+            return None
 
         
