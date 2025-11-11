@@ -19,10 +19,15 @@ def index():
 try:
     from backend.routes.participantes_routes import participantes_bp
     app.register_blueprint(participantes_bp, url_prefix='/participantes')
-    print("✅ Rutas de participantes cargadas correctamente")
+    from backend.routes.reservas_routes import reservas_bp
+    app.register_blueprint(reservas_bp, url_prefix='/reservas')
+    from backend.routes.salas_routes import salas_bp
+    app.register_blueprint(salas_bp, url_prefix='/salas')
+    print("✅ Rutas cargadas correctamente")
 except ImportError as e:
     print(f"❌ Error cargando rutas: {e}")
 
 if __name__ == '__main__':
     print("🚀 Iniciando servidor en http://localhost:5000")
     app.run(debug=True, host='0.0.0.0', port=5000)
+    
