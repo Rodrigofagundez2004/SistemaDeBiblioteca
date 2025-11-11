@@ -1,0 +1,27 @@
+services:
+  web:
+    build: .  # 👈 Esto busca el Dockerfile en la misma carpeta
+    ports:
+      - "0.0.0.0:5000:5000"
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=Agusrodpro1
+      - DB_NAME=SistemaDeBiblioteca
+    depends_on:
+      - db
+    volumes:
+      - .:/app  # 👈 Para desarrollo: sincroniza cambios en tiempo real
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: Agusrodpro1
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+volumes:
+  db_data:
