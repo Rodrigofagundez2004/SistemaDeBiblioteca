@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Crear sala</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="logo">📚 Sistema de Salas</div>
+      <nav class="nav-links">
+        <a href="/" class="nav-item">🏠 Inicio</a>
+        <a href="/participantes" class="nav-item">👥 Participantes</a>
+        <a href="/salas" class="nav-item active">🚪 Salas</a>
+        <a href="/reservas" class="nav-item">📅 Reservas</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <h1>➕ Crear nueva sala</h1>
+
+        <form method="POST" class="form">
+          <div class="form-group">
+            <label for="nombre_sala">Nombre de la sala</label>
+            <input
+              type="text"
+              id="nombre_sala"
+              name="nombre_sala"
+              placeholder="Ej: Sala 101"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="edificio">Edificio</label>
+            <select id="edificio" name="edificio" required>
+              <option value="" disabled selected>Seleccioná un edificio</option>
+              {% for e in edificios %}
+              <option value="{{ e.nombre_edificio }}">
+                {{ e.nombre_edificio }}
+              </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="capacidad">Capacidad</label>
+            <input
+              type="number"
+              id="capacidad"
+              name="capacidad"
+              min="1"
+              step="1"
+              placeholder="Cantidad máxima de personas"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="tipo_sala">Tipo de sala</label>
+            <select id="tipo_sala" name="tipo_sala" required>
+              <option value="" disabled selected>Seleccioná un tipo</option>
+              <option value="libre">Uso libre</option>
+              <option value="posgrado">Exclusiva de posgrado</option>
+              <option value="docente">Exclusiva de docentes</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn primary full-width">
+            💾 Guardar sala
+          </button>
+        </form>
+
+        <div class="card-footer">
+          <a href="{{ url_for('salas.listar_salas') }}" class="link-back">
+            ↩️ Volver al listado
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Proyecto Obligatorio · Segundo Semestre 2025</span>
+    </footer>
+  </body>
+</html>
