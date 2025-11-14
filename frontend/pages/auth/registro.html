@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registro - Sistema Biblioteca</title>
+    <style>
+        body { font-family: Arial; margin: 40px; background: #f5f5f5; }
+        .register-box { background: white; padding: 30px; border-radius: 10px; max-width: 400px; margin: 50px auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; }
+        button { width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #218838; }
+        .messages { margin: 20px 0; }
+        .error { background: #ffebee; color: #c62828; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="register-box">
+        <h2>📝 Registrarse</h2>
+        
+        <div class="messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <form method="POST">
+            <input type="text" name="ci" placeholder="🆔 Cédula" required>
+            <input type="text" name="nombre" placeholder="👤 Nombre" required>
+            <input type="text" name="apellido" placeholder="👥 Apellido" required>
+            <input type="email" name="email" placeholder="📧 Email" required>
+            <input type="password" name="password" placeholder="🔒 Contraseña" required>
+            <button type="submit">✅ Registrarse</button>
+        </form>
+        
+        <p style="text-align: center; margin-top: 20px;">
+            <a href="/auth/login">↩️ Volver al login</a>
+        </p>
+    </div>
+</body>
+</html>

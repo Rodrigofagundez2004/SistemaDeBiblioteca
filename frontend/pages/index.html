@@ -16,10 +16,37 @@
         <a href="/participantes" class="nav-item">👥 Participantes</a>
         <a href="/salas" class="nav-item">🚪 Salas</a>
         <a href="/reservas" class="nav-item">📅 Reservas</a>
+        
+        <!-- 👇 NUEVO: Información del usuario -->
+        {% if session.usuario %}
+          <div class="user-info">
+            <span class="user-name">👋 {{ session.usuario.nombre }} {{ session.usuario.apellido }}</span>
+            <a href="/auth/logout" class="nav-item logout-btn">🚪 Cerrar sesión</a>
+          </div>
+        {% else %}
+          <a href="/auth/login" class="nav-item login-btn">🔐 Iniciar sesión</a>
+        {% endif %}
       </nav>
     </header>
 
     <main class="container">
+      <!-- 👇 NUEVO: Mensaje de bienvenida/recordatorio de login -->
+      {% if session.usuario %}
+        <div class="welcome-banner">
+          <div class="welcome-content">
+            <h3>¡Bienvenido, {{ session.usuario.nombre }}! 🎉</h3>
+            <p>Estás logueado como <strong>{{ session.usuario.ci }}</strong>. Ahora puedes gestionar reservas y acceder a todas las funciones del sistema.</p>
+          </div>
+        </div>
+      {% else %}
+        <div class="login-reminder">
+          <div class="reminder-content">
+            <h3>🔐 Acceso al sistema</h3>
+            <p>Para gestionar reservas y acceder a todas las funciones, <a href="/auth/login">iniciá sesión</a> o <a href="/auth/registro">creá una cuenta</a>.</p>
+          </div>
+        </div>
+      {% endif %}
+
       <section class="hero-card">
         <h1>🏫 Sistema de Gestión de Salas</h1>
         <p>
@@ -29,12 +56,40 @@
         <div class="hero-actions">
           <a href="/reservas" class="btn primary">Crear nueva reserva</a>
           <a href="/participantes" class="btn secondary">Ver participantes</a>
+          
+          <!-- 👇 NUEVO: Botón extra para usuarios logueados -->
+          {% if session.usuario %}
+            <a href="/auth/logout" class="btn outline">Cerrar sesión</a>
+          {% else %}
+            <a href="/auth/login" class="btn outline">Iniciar sesión</a>
+          {% endif %}
+        </div>
+      </section>
+
+      <!-- 👇 NUEVO: Sección de estado del sistema -->
+      <section class="status-cards">
+        <div class="status-card">
+          <h3>📊 Estado del sistema</h3>
+          <div class="status-info">
+            {% if session.usuario %}
+              <p><strong>Usuario:</strong> {{ session.usuario.nombre }} {{ session.usuario.apellido }}</p>
+              <p><strong>Email:</strong> {{ session.usuario.email }}</p>
+              <p><strong>Cédula:</strong> {{ session.usuario.ci }}</p>
+              <p><strong>Estado:</strong> <span class="status-online">✅ Conectado</span></p>
+            {% else %}
+              <p><strong>Estado:</strong> <span class="status-offline">❌ No logueado</span></p>
+              <p>Iniciá sesión para acceder a todas las funciones del sistema.</p>
+            {% endif %}
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="footer">
       <span>Proyecto Obligatorio · Segundo Semestre 2025</span>
+      {% if session.usuario %}
+        <span class="user-session">Sesión activa: {{ session.usuario.email }}</span>
+      {% endif %}
     </footer>
   </body>
 </html>
