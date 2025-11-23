@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Registro - Sistema Biblioteca</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="logo">📚 Sistema de Salas</div>
+      <nav class="nav-links">
+        <a href="/" class="nav-item">🏠 Inicio</a>
+        <a href="/participantes" class="nav-item">👥 Participantes</a>
+        <a href="/salas" class="nav-item">🚪 Salas</a>
+        <a href="/reservas" class="nav-item">📅 Reservas</a>
+
+        {% if session.usuario %}
+          <div class="user-info">
+            <span class="user-name">
+              👋 {{ session.usuario.nombre }} {{ session.usuario.apellido }}
+            </span>
+            <a href="/auth/logout" class="nav-item logout-btn">🚪 Cerrar sesión</a>
+          </div>
+        {% else %}
+          <a href="/auth/login" class="nav-item login-btn">
+            🔐 Iniciar sesión
+          </a>
+        {% endif %}
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <div class="card-header">
+          <h1>📝 Crear cuenta</h1>
+        </div>
+
+        <!-- Mensajes flash -->
+        <div class="messages">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="flash-message {{ category }}">{{ message }}</div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+        </div>
+
+        <form method="POST" class="form" action="{{ url_for('auth.registro') }}">
+          <div class="form-group">
+            <label for="ci">🆔 Cédula</label>
+            <input
+              type="text"
+              id="ci"
+              name="ci"
+              placeholder="Ej: 4.567.890-1"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="nombre">👤 Nombre</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="Tu nombre"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="apellido">👥 Apellido</label>
+            <input
+              type="text"
+              id="apellido"
+              name="apellido"
+              placeholder="Tu apellido"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">📧 Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="tu.correo@ejemplo.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">🔒 Contraseña</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="••••••••"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn primary full-width">
+            ✅ Registrarse
+          </button>
+        </form>
+
+        <div class="card-footer">
+          <span class="field-hint">
+            ¿Ya tenés cuenta?
+            <a href="{{ url_for('auth.login') }}">Volver al login</a>
+          </span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Proyecto Obligatorio · Segundo Semestre 2025</span>
+      {% if session.usuario %}
+        <span class="user-session">
+          Sesión activa: {{ session.usuario.email }}
+        </span>
+      {% endif %}
+    </footer>
+  </body>
+</html>
