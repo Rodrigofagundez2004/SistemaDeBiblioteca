@@ -60,6 +60,10 @@ try:
     from backend.routes.auth_routes import auth_bp
     app.register_blueprint(auth_bp, url_prefix='/auth')
     print("✅ Rutas de autenticación cargadas")
+
+    from backend.routes.reporte_routes import reportes_bp
+    app.register_blueprint(reportes_bp, url_prefix='/reportes')
+    print("✅ Rutas de reportes cargadas")
     
 except ImportError as e:
     print(f"❌ Error cargando rutas: {e}")
