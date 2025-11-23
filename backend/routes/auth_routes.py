@@ -12,14 +12,14 @@ def login():
         
         from backend.models.login_model import LoginModel
         model = LoginModel()
-        success, resultado = model.verificar_login(email, password)  # 👈 'resultado' no 'result'
+        success, resultado = model.verificar_login(email, password)
         
         if success:
-            session['usuario'] = resultado  # 👈 Aquí usas 'resultado'
-            flash(f"¡Bienvenido {resultado['nombre']}!", 'success')  # 👈 Y aquí también
+            session['usuario'] = resultado
+            flash(f"¡Bienvenido {resultado['nombre']}!", 'success')
             return redirect(url_for('index'))
         else:
-            flash(resultado, 'error')  # 👈 Y aquí también
+            flash(resultado, 'error')
     
     return render_template('auth/login.html')
 

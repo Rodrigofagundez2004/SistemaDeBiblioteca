@@ -8,7 +8,7 @@ class ParticipanteModel:
         cursor = None
         try:
             cursor = conn.cursor(dictionary=True)
-            cursor.execute("SELECT * FROM participante")  # 👈 ESPACIO AGREGADO
+            cursor.execute("SELECT * FROM participante")
             return cursor.fetchall()
         except Exception as e:
             print(f"Error al obtener participantes: {e}")

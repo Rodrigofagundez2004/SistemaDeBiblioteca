@@ -17,7 +17,7 @@
         <a href="/salas" class="nav-item">🚪 Salas</a>
         <a href="/reservas" class="nav-item">📅 Reservas</a>
         
-        <!-- 👇 NUEVO: Información del usuario -->
+        <!-- 👇 Información del usuario -->
         {% if session.usuario %}
           <div class="user-info">
             <span class="user-name">👋 {{ session.usuario.nombre }} {{ session.usuario.apellido }}</span>
@@ -30,7 +30,7 @@
     </header>
 
     <main class="container">
-      <!-- 👇 NUEVO: Mensaje de bienvenida/recordatorio de login -->
+      <!-- 👇 Mensaje de bienvenida/recordatorio de login -->
       {% if session.usuario %}
         <div class="welcome-banner">
           <div class="welcome-content">
@@ -57,7 +57,7 @@
           <a href="/reservas" class="btn primary">Crear nueva reserva</a>
           <a href="/participantes" class="btn secondary">Ver participantes</a>
           
-          <!-- 👇 NUEVO: Botón extra para usuarios logueados -->
+          <!-- 👇 Botón extra para usuarios logueados -->
           {% if session.usuario %}
             <a href="/auth/logout" class="btn outline">Cerrar sesión</a>
           {% else %}
@@ -66,7 +66,7 @@
         </div>
       </section>
 
-      <!-- 👇 NUEVO: Sección de estado del sistema -->
+      <!-- 👇 Sección de estado del sistema -->
       <section class="status-cards">
         <div class="status-card">
           <h3>📊 Estado del sistema</h3>

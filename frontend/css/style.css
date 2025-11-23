@@ -83,7 +83,7 @@ body {
     box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
 }
 
-/* 👇 NUEVO: Estilos para información de usuario */
+/* 👇 Estilos para información de usuario */
 .user-info {
     display: flex;
     align-items: center;
@@ -131,7 +131,7 @@ body {
     padding: 0 16px;
 }
 
-/* 👇 NUEVO: Banner de bienvenida */
+/* 👇 Banner de bienvenida */
 .welcome-banner {
     background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), transparent 60%);
     border: 1px solid rgba(34, 197, 94, 0.2);
@@ -153,7 +153,7 @@ body {
     line-height: 1.5;
 }
 
-/* 👇 NUEVO: Recordatorio de login */
+/* 👇 Recordatorio de login */
 .login-reminder {
     background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), transparent 60%);
     border: 1px solid rgba(245, 158, 11, 0.2);
@@ -185,7 +185,7 @@ body {
     text-decoration: underline;
 }
 
-/* 👇 NUEVO: Tarjetas de estado */
+/* 👇 Tarjetas de estado */
 .status-cards {
     display: grid;
     grid-template-columns: 1fr;
@@ -254,7 +254,7 @@ body {
     place-content: center;
 }
 
-/* 👇 NUEVO: Botón outline */
+/* 👇 Botón outline */
 .btn.outline {
     background: transparent;
     border: 1px solid var(--border);
@@ -473,7 +473,7 @@ tr:hover {
     background: rgba(30,64,175,0.28);
 }
 
-/* 👇 NUEVO: Footer actualizado */
+/* 👇 Footer actualizado */
 .footer {
     margin-top: auto;
     padding: 14px 24px 18px;
@@ -492,7 +492,7 @@ tr:hover {
     opacity: 0.7;
 }
 
-/* 👇 NUEVO: Mensajes flash */
+/* 👇 Mensajes flash */
 .messages {
     margin: 16px 0;
 }

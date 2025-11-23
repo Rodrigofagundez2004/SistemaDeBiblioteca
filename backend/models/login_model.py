@@ -4,7 +4,7 @@ import hashlib
 import secrets 
 class LoginModel:
     def verificar_login(self, email, password):
-        #en esta funcion vamos a verificar las credenciales del login
+        # En esta funcion vamos a verificar las credenciales del login
         db = Database()
         conn = db.get_connection()
         cursor = None
@@ -34,16 +34,16 @@ class LoginModel:
             if cursor: cursor.close()
             if conn: conn.close()
     def crear_usuario(self, ci, email, password):
-        #crear un nuevo usuario en login
+        #Crear un nuevo usuario en login
         db = Database()
         conn = db.get_connection()
         cursor = None 
 
         try:
             cursor = conn.cursor()
-            #hash de la password
+            #Hash de la password
             password_hash = self._hash_password(password)
-            #insertamos el login
+            #Insertamos el login
             cursor.execute("INSERT INTO login (correo, contraseña) VALUES (%s, %s)", (email, password_hash))
             conn.commit()
             return True, "Usuario creado de forma exitosa"

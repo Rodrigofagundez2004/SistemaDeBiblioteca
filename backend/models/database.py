@@ -5,11 +5,11 @@ class Database:
     def get_connection(self):
         try:
             connection = mysql.connector.connect(
-                host='sistemabiblioteca.mysql.database.azure.com',          # 
-                user='adminmysql',       #  
-                password='Agusrodpro1',  #  
+                host='sistemabiblioteca.mysql.database.azure.com',
+                user='adminmysql',
+                password='Agusrodpro1',
                 database='sistemadebiblioteca',
-                port=3306  # 👈 Usualmente 3306 para MySQL
+                port=3306
             )
             return connection
         except Exception as e:
