@@ -1,7 +1,7 @@
 # app.py
 import sys
 import os
-from flask import Flask, render_template, session, redirect, url_for, request  # 👈 AGREGAMOS session, redirect, url_for, request
+from flask import Flask, render_template, session, redirect, url_for, request
 
 # Agregar la carpeta backend al path
 sys.path.append(os.path.join(os.path.dirname(__file__), 'backend'))
@@ -12,10 +12,10 @@ app = Flask(
     static_folder='frontend'
 )
 
-# 👇 SECRET KEY PARA SESIONES
+# SECRET KEY PARA SESIONES
 app.secret_key = 'sistema_biblioteca_ucu_2025_clave_segura_agus'
 
-# 👇 NUEVO: filtro global para exigir login
+# filtro global para exigir login
 @app.before_request
 def requerir_login():
     # Endpoints que NO requieren estar logueado
@@ -42,7 +42,7 @@ def requerir_login():
 def index():
     return render_template('index.html')
 
-# 👇 REGISTRAR TODAS LAS RUTAS (DESPUÉS de crear 'app')
+# REGISTRAR TODAS LAS RUTAS (DESPUÉS de crear 'app')
 try:
     from backend.routes.participantes_routes import participantes_bp
     app.register_blueprint(participantes_bp, url_prefix='/participantes')
