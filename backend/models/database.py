@@ -7,7 +7,7 @@ class Database:
             connection = mysql.connector.connect(
                 host='sistemabiblioteca.mysql.database.azure.com',
                 user='adminmysql',
-                password='Agusrodpro1',
+                password='Bruno123',
                 database='sistemadebiblioteca',
                 port=3306
             )
