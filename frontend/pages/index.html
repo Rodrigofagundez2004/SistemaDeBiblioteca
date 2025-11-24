@@ -49,20 +49,9 @@
 
       <section class="hero-card">
         <h1>🏫 Sistema de Gestión de Salas</h1>
-        <p>
-          Administrá participantes, salas y reservas de forma sencilla. Usando
-          una base de datos en Azure y una API en Flask.
-        </p>
         <div class="hero-actions">
           <a href="/reservas" class="btn primary">Crear nueva reserva</a>
           <a href="/participantes" class="btn secondary">Ver participantes</a>
-          
-          <!-- 👇 Botón extra para usuarios logueados -->
-          {% if session.usuario %}
-            <a href="/auth/logout" class="btn outline">Cerrar sesión</a>
-          {% else %}
-            <a href="/auth/login" class="btn outline">Iniciar sesión</a>
-          {% endif %}
         </div>
       </section>
 
